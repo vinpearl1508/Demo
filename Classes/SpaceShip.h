@@ -14,7 +14,13 @@ public:
 
 	virtual bool Init();
 	virtual void Update();
+
+	void createEvent(cocos2d::Scene*);
+	bool SpaceShip::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event *event);
+	void SpaceShip::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event *event);
+	void SpaceShip::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event *event);
 private:
+	cocos2d::Vec2 mDistanceToSpaceShip;
 	Bullet *bullet;
 	vector<Bullet*> bullets;
 };
