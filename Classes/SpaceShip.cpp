@@ -9,6 +9,12 @@ SpaceShip::SpaceShip(cocos2d::Scene *scene) : Model()
 	scene->addChild(mSprite);
 	SetAlive(true);
 	SpaceShip::createEvent(scene);
+
+	for (int i = 0; i < BULLET_MAX; i++) {
+		bullet = new Bullet(scene);
+		//bullet->Init();
+		bullets.push_back(bullet);
+	}
 }
 
 
@@ -18,12 +24,29 @@ SpaceShip::~SpaceShip()
 
 bool SpaceShip::Init()
 {
+	mFrameCount = 0;
 	SetPosition(cocos2d::Vec2(SCREEN_W / 2, mSprite->getContentSize().height / 2));
 	return true;
 }
 
 void SpaceShip::Update()
 {
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		if(!bullets.at(i)->IsAlive())
+			bullets.at(i)->SetPosition(cocos2d::Vec2(mSprite->getPosition().x, mSprite->getPosition().y + mSprite->getContentSize().height / 2));
+		bullets.at(i)->Update();
+	}
+	mFrameCount++;
+	if (mFrameCount % 4 == 0) {
+		for (int i = 0; i < bullets.size(); i++) {
+			if (!bullets.at(i)->IsAlive()) {
+				bullets.at(i)->Init();
+				bullets.at(i)->SetAlive(true);
+				break;
+			}
+		}
+	}
 }
 
 void SpaceShip::createEvent(cocos2d::Scene *scene)
@@ -39,14 +62,10 @@ bool SpaceShip::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event *event) {
 	mDistanceToSpaceShip = touch->getLocation() - GetPosition();
 	return true;
 }
+
 void SpaceShip::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event *event) {
-	/*if (touch->getLocation().x <= SCREEN_W - mSprite->getContentSize().width / 2
-		&& touch->getLocation().x >= mSprite->getContentSize().width / 2
-		&& touch->getLocation().y <= SCREEN_H - mSprite->getContentSize().height / 2
-		&& touch->getLocation().y >= mSprite->getContentSize().height / 2) {
-		mSprite->setPosition(cocos2d::Vec2(touch->getLocation()));
-	}*/
 	SetPosition(touch->getLocation() - mDistanceToSpaceShip);
 }
+
 void SpaceShip::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event *event) {
 }

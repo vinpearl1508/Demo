@@ -23,5 +23,6 @@ private:
 	cocos2d::Vec2 mDistanceToSpaceShip;
 	Bullet *bullet;
 	vector<Bullet*> bullets;
+	int mFrameCount;
 };
 #endif

@@ -17,7 +17,7 @@ Bullet::~Bullet()
 
 bool Bullet::Init()
 {
-	SetPosition(cocos2d::Vec2(SCREEN_W / 2, mSprite->getContentSize().height / 2));
+	//SetPosition(cocos2d::Vec2(SCREEN_W / 2, mSprite->getContentSize().height / 2));
 	return true;
 }
 
