@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __MODEL_H__
+#define __MODEL_H__
 #include "cocos2d.h"
 class Model
 {
@@ -17,4 +18,4 @@ protected:
 	cocos2d::Sprite *mSprite;
 	bool mIsAlive;
 };
-
+#endif

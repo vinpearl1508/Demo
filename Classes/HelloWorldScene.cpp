@@ -1,32 +1,12 @@
-/****************************************************************************
- Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
- http://www.cocos2d-x.org
- 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
- ****************************************************************************/
-
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "Defines.h"
 #include "Rock.h"
+#include <vector>
+using namespace std;
 USING_NS_CC;
 Rock *rock;
+vector<Rock*> rocks;
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
@@ -42,14 +22,31 @@ bool HelloWorld::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	rock = new Rock(this);
-	rock->Init();
+	for (int i = 0; i < ROCK_MAX; i++) {
+		rock = new Rock(this);
+		rock->Init();
+		rocks.push_back(rock);
+	}
 
 	scheduleUpdate();
+	
     return true;
 }
 
 void HelloWorld::update(float delta)
 {
-	rock->Update();
+	for (int i = 0; i < rocks.size(); i++)
+	{
+		rocks.at(i)->Update();
+	}
+	mFrameCount++;
+	if (mFrameCount % 4 == 0) {
+		for (int i = 0; i < rocks.size(); i++) {
+			if (!rocks.at(i)->IsAlive()) {
+				rocks.at(i)->Init();
+				rocks.at(i)->SetAlive(true);
+				break;
+			}
+		}
+	}
 }

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __ROCK_H__
+#define __ROCK_H__
 #include "Model.h"
 class Rock : public Model
 {
@@ -14,4 +15,5 @@ public:
 private:
 	int mStep;
 };
+#endif
 

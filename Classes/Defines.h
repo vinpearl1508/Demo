@@ -10,3 +10,4 @@
 
 #define ROCK_MIN_STEP 5
 #define ROCK_MAX_STEP 10
+#define ROCK_MAX 10

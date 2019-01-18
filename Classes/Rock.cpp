@@ -26,14 +26,12 @@ bool Rock::Init()
 
 void Rock::Update()
 {
-	if (!IsAlive())
-	{
-		SetAlive(true);
-		SetPosition(GetPosition() - cocos2d::Vec2(0, GetStep()));
-	}
-	else
+	if (IsAlive())
 	{
 		SetPosition(GetPosition() - cocos2d::Vec2(0, GetStep()));
+		if (GetPosition().y <= - mSprite->getContentSize().height / 2) {
+			SetAlive(false);
+		}
 	}
 }
 
