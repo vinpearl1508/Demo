@@ -13,3 +13,4 @@
 #define ROCK_MAX 10
 
 #define BULLET_SHOOTING_STEP 10
+#define BULLET_MAX 10

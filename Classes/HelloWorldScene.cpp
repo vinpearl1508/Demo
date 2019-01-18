@@ -9,6 +9,7 @@ USING_NS_CC;
 Rock *rock;
 vector<Rock*> rocks;
 Bullet *bullet;
+vector<Bullet*> bullets;
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
@@ -30,8 +31,11 @@ bool HelloWorld::init()
 		rocks.push_back(rock);
 	}
 
-	bullet = new Bullet(this);
-	bullet->Init();
+	for (int i = 0; i < BULLET_MAX; i++) {
+		bullet = new Bullet(this);
+		bullet->Init();
+		bullets.push_back(bullet);
+	}
 
 	scheduleUpdate();
 	
@@ -44,6 +48,10 @@ void HelloWorld::update(float delta)
 	{
 		rocks.at(i)->Update();
 	}
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		bullets.at(i)->Update();
+	}
 	mFrameCount++;
 	if (mFrameCount % 4 == 0) {
 		for (int i = 0; i < rocks.size(); i++) {
@@ -53,6 +61,12 @@ void HelloWorld::update(float delta)
 				break;
 			}
 		}
+		for (int i = 0; i < bullets.size(); i++) {
+			if (!bullets.at(i)->IsAlive()) {
+				bullets.at(i)->Init();
+				bullets.at(i)->SetAlive(true);
+				break;
+			}
+		}
 	}
-	bullet->Update();
 }
