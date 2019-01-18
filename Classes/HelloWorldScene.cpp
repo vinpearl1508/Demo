@@ -3,6 +3,7 @@
 #include "Defines.h"
 #include "Rock.h"
 #include "Bullet.h"
+#include "SpaceShip.h"
 #include <vector>
 using namespace std;
 USING_NS_CC;
@@ -10,6 +11,7 @@ Rock *rock;
 vector<Rock*> rocks;
 Bullet *bullet;
 vector<Bullet*> bullets;
+SpaceShip *spaceShip;
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
@@ -36,7 +38,8 @@ bool HelloWorld::init()
 		bullet->Init();
 		bullets.push_back(bullet);
 	}
-
+	spaceShip = new SpaceShip(this);
+	spaceShip->Init();
 	scheduleUpdate();
 	
     return true;

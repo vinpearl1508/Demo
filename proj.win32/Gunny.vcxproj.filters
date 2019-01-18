@@ -39,6 +39,9 @@
     <ClCompile Include="..\Classes\Bullet.cpp">
       <Filter>src\models</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\SpaceShip.cpp">
+      <Filter>src\models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -60,6 +63,9 @@
       <Filter>src\models</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Bullet.h">
+      <Filter>src\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SpaceShip.h">
       <Filter>src\models</Filter>
     </ClInclude>
   </ItemGroup>
