@@ -2,11 +2,13 @@
 #include "SimpleAudioEngine.h"
 #include "Defines.h"
 #include "Rock.h"
+#include "Bullet.h"
 #include <vector>
 using namespace std;
 USING_NS_CC;
 Rock *rock;
 vector<Rock*> rocks;
+Bullet *bullet;
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
@@ -27,6 +29,9 @@ bool HelloWorld::init()
 		rock->Init();
 		rocks.push_back(rock);
 	}
+
+	bullet = new Bullet(this);
+	bullet->Init();
 
 	scheduleUpdate();
 	
@@ -49,4 +54,5 @@ void HelloWorld::update(float delta)
 			}
 		}
 	}
+	bullet->Update();
 }
