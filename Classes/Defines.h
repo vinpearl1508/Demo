@@ -2,6 +2,9 @@
 #define SCREEN_H 600
 #define FPS 40
 
+#define LOADINGBAR_GB "loadingbar_bg.png"
+#define LOADINGBAR "loadingbar.png"
+
 #define FONT_PATH "fonts/Marker Felt.ttf"
 #define FONT_SIZE_SCORE 24
 
