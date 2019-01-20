@@ -14,7 +14,9 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 private:
-	int mFrameCount = 0;
+	int mFrameCount;
+	int mScore;
+	cocos2d::Label *mScoreLabel;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

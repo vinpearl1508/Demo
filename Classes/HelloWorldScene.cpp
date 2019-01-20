@@ -25,10 +25,17 @@ bool HelloWorld::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	mFrameCount = 0;
+	mScore = 0;
+
 	auto background = Sprite::create(IMG_BG);
 	background->setContentSize(visibleSize);
 	background->setPosition(visibleSize.width / 2, visibleSize.height / 2);
 	this->addChild(background);
+
+	mScoreLabel = Label::createWithTTF(std::to_string(mScore), FONT_PATH, FONT_SIZE_SCORE);
+	mScoreLabel->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height - mScoreLabel->getContentSize().height));
+	this->addChild(mScoreLabel);
 
 	for (int i = 0; i < ROCK_MAX; i++) {
 		rock = new Rock(this);
@@ -58,6 +65,8 @@ void HelloWorld::update(float delta)
 			if (spaceShip->Collision(rocks.at(i)))
 			{
 				rocks.at(i)->SetAlive(false);
+				mScore++;
+				mScoreLabel->setString(std::to_string(mScore));
 			}
 			if (spaceShip->CollisionSpacewithRock(rocks.at(i)))
 			{

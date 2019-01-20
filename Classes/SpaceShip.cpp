@@ -71,4 +71,30 @@ void SpaceShip::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event *event) {
 void SpaceShip::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event *event) {
 }
 
-bool SpaceShip::Collision(Rock* rock){	for (int i = 0; i < bullets.size(); i++)	{		if (bullets.at(i)->IsAlive())		{			auto rectRock = rock->GetRect();			auto rectBull = bullets.at(i)->GetRect();			if (rectBull.intersectsRect(rectRock))			{				return true;			}		}	}	return false;}bool SpaceShip::CollisionSpacewithRock(Rock* rock){	auto rectRock = rock->GetRect();	auto recSpace = GetRect();	if (recSpace.intersectsRect(rectRock))	{		return true;	}	return false;}
+bool SpaceShip::Collision(Rock* rock)
+{
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		if (bullets.at(i)->IsAlive())
+		{
+			auto rectRock = rock->GetRect();
+			auto rectBull = bullets.at(i)->GetRect();
+			if (rectBull.intersectsRect(rectRock))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool SpaceShip::CollisionSpacewithRock(Rock* rock)
+{
+	auto rectRock = rock->GetRect();
+	auto recSpace = GetRect();
+	if (recSpace.intersectsRect(rectRock))
+	{
+		return true;
+	}
+	return false;
+}
