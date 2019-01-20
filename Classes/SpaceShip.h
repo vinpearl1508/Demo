@@ -3,6 +3,7 @@
 #include "Model.h"
 #include "SpaceShip.h"
 #include "Bullet.h"
+#include "Rock.h"
 #include <vector>
 using namespace std;
 class SpaceShip :
@@ -19,6 +20,8 @@ public:
 	bool SpaceShip::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event *event);
 	void SpaceShip::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event *event);
 	void SpaceShip::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event *event);
+
+	bool Collision(Rock*);	bool CollisionSpacewithRock(Rock*);
 private:
 	cocos2d::Vec2 mDistanceToSpaceShip;
 	Bullet *bullet;

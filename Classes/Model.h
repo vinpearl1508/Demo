@@ -14,6 +14,8 @@ public:
 	cocos2d::Vec2 GetPosition();
 	void SetAlive(bool);
 	bool IsAlive();
+
+	cocos2d::Rect GetRect();
 protected:
 	cocos2d::Sprite *mSprite;
 	bool mIsAlive;

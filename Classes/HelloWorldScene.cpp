@@ -45,6 +45,8 @@ void HelloWorld::update(float delta)
 	{
 		rocks.at(i)->Update();
 	}
+
+	for (int i = 0; i < rocks.size(); i++)	{		if (rocks.at(i)->IsAlive())		{			if (spaceShip->Collision(rocks.at(i)))			{				rocks.at(i)->SetAlive(false);			}			if (spaceShip->CollisionSpacewithRock(rocks.at(i)))			{				rocks.at(i)->SetAlive(false);				CCLOG("Die");			}		}	}
 	
 	mFrameCount++;
 	if (mFrameCount % 4 == 0) {
