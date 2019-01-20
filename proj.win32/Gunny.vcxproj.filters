@@ -42,6 +42,9 @@
     <ClCompile Include="..\Classes\SpaceShip.cpp">
       <Filter>src\models</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\LogoScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -67,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SpaceShip.h">
       <Filter>src\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LogoScene.h">
+      <Filter>src\scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

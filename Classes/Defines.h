@@ -2,6 +2,7 @@
 #define SCREEN_H 600
 #define FPS 40
 
+#define IMG_LOGO "logo.png"
 #define IMG_BG "background.png"
 #define IMG_ROCK "rock.png"
 #define IMG_SPACESHIP "spaceship.png"
