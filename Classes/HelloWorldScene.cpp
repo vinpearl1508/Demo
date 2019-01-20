@@ -25,6 +25,11 @@ bool HelloWorld::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	auto background = Sprite::create(IMG_BG);
+	background->setContentSize(visibleSize);
+	background->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+	this->addChild(background);
+
 	for (int i = 0; i < ROCK_MAX; i++) {
 		rock = new Rock(this);
 		rock->Init();
@@ -46,7 +51,21 @@ void HelloWorld::update(float delta)
 		rocks.at(i)->Update();
 	}
 
-	for (int i = 0; i < rocks.size(); i++)	{		if (rocks.at(i)->IsAlive())		{			if (spaceShip->Collision(rocks.at(i)))			{				rocks.at(i)->SetAlive(false);			}			if (spaceShip->CollisionSpacewithRock(rocks.at(i)))			{				rocks.at(i)->SetAlive(false);				CCLOG("Die");			}		}	}
+	for (int i = 0; i < rocks.size(); i++)
+	{
+		if (rocks.at(i)->IsAlive())
+		{
+			if (spaceShip->Collision(rocks.at(i)))
+			{
+				rocks.at(i)->SetAlive(false);
+			}
+			if (spaceShip->CollisionSpacewithRock(rocks.at(i)))
+			{
+				rocks.at(i)->SetAlive(false);
+				CCLOG("Die");
+			}
+		}
+	}
 	
 	mFrameCount++;
 	if (mFrameCount % 4 == 0) {
