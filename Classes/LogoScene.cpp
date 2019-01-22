@@ -1,5 +1,5 @@
 #include "LogoScene.h"
-#include "HelloWorldScene.h"
+#include "TitleScene.h"
 #include "Defines.h"
 #include "ui/CocosGUI.h"
 USING_NS_CC;
@@ -43,7 +43,7 @@ bool LogoScene::init()
 	loadingbar->runAction(repeat);
 
 	auto gotoNext = CallFunc::create([]() {
-		Director::getInstance()->replaceScene(HelloWorld::createScene());
+		Director::getInstance()->replaceScene(TitleScene::createScene());
 	});
 	auto sequence = Sequence::create(DelayTime::create(10), gotoNext,
 		nullptr);

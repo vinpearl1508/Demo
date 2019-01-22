@@ -4,12 +4,10 @@
 #include "Rock.h"
 #include "Bullet.h"
 #include "SpaceShip.h"
-#include <vector>
+
 using namespace std;
 USING_NS_CC;
-Rock *rock;
-vector<Rock*> rocks;
-SpaceShip *spaceShip;
+
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
@@ -71,7 +69,6 @@ void HelloWorld::update(float delta)
 			if (spaceShip->CollisionSpacewithRock(rocks.at(i)))
 			{
 				rocks.at(i)->SetAlive(false);
-				CCLOG("Die");
 			}
 		}
 	}
