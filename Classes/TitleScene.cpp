@@ -2,14 +2,14 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "Defines.h"
-
+using namespace CocosDenshion;
 USING_NS_CC;
 
 Scene* TitleScene::createScene()
 {
 	return TitleScene::create();
 }
-
+SimpleAudioEngine *audio;
 bool TitleScene::init()
 {
 	if (!Scene::init())
@@ -19,6 +19,9 @@ bool TitleScene::init()
 
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+	audio = SimpleAudioEngine::getInstance();
+	audio->playBackgroundMusic("sounds/title.mp3", true);
 
 	auto startLabel = Label::create(START_LABEL, FONT_PATH, FONT_SIZE_START);
 	auto startItem = MenuItemLabel::create(startLabel, CC_CALLBACK_1(TitleScene::menuStartCallBack, this));
@@ -47,6 +50,7 @@ void TitleScene::menuStartCallBack(Ref* pSender)
 {
 	auto gotoNext = CallFunc::create([]() {
 		Director::getInstance()->replaceScene(HelloWorld::createScene());
+		audio->stopBackgroundMusic();
 	});
 	auto sequence = Sequence::create(gotoNext, nullptr);
 	runAction(sequence);
